@@ -7,6 +7,24 @@
   --pine: #3B6E5E;
   --ember: #C2511F;
   --line: #D8D4C8;
+  --card: #FFFFFF;
+  --muted: #6B6862;
+  --muted-light: #A6A299;
+}
+
+[data-theme="dark"] {
+  --paper: #171614;
+  --ink: #EDEAE3;
+  --pine: #5C9684;
+  --ember: #E07A4A;
+  --line: #3A3733;
+  --card: #1F1D1A;
+  --muted: #ABA89F;
+  --muted-light: #6E6A62;
+}
+
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 body {

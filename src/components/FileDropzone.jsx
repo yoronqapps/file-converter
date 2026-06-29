@@ -50,7 +50,7 @@ export default function FileDropzone({ onFileReady }) {
         className="rounded-xl p-14 text-center cursor-pointer transition-all duration-150"
         style={{
           border: `1.5px dashed ${isDragging ? 'var(--pine)' : 'var(--line)'}`,
-          backgroundColor: isDragging ? 'rgba(59, 110, 94, 0.05)' : 'white',
+          backgroundColor: isDragging ? 'rgba(59, 110, 94, 0.08)' : 'var(--card)',
         }}
       >
         <input ref={inputRef} type="file" className="hidden" onChange={handleFileInput} />
@@ -61,11 +61,10 @@ export default function FileDropzone({ onFileReady }) {
           </p>
         ) : (
           <>
-            {/* Signature element: source -> target badge motif */}
             <div className="flex items-center justify-center gap-3 mb-5">
               <span
                 className="font-mono text-xs px-3 py-1.5 rounded-md border"
-                style={{ borderColor: 'var(--line)', color: '#8A8678' }}
+                style={{ borderColor: 'var(--line)', color: 'var(--muted-light)' }}
               >
                 .ANY
               </span>
@@ -81,7 +80,7 @@ export default function FileDropzone({ onFileReady }) {
             <p className="font-display font-medium text-lg" style={{ color: 'var(--ink)' }}>
               Drop a file, or click to browse
             </p>
-            <p className="text-sm mt-1" style={{ color: '#A6A299' }}>
+            <p className="text-sm mt-1" style={{ color: 'var(--muted-light)' }}>
               Images, PDFs, CSV, JSON, XLSX
             </p>
           </>
