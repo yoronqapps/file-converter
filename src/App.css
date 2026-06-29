@@ -182,3 +182,16 @@
     border-right-color: var(--border);
   }
 }
+/* Custom smooth loading loop for active conversions */
+.ui-spinner {
+  animation: ui-spin-loop 0.85s linear infinite;
+}
+
+@keyframes ui-spin-loop {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

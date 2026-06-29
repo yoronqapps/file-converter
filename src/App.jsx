@@ -30,7 +30,7 @@ function App() {
             Convert<span style={{ color: 'var(--ember)' }}>.</span>
           </span>
           <span className="font-mono text-xs tracking-wide" style={{ color: 'var(--pine)' }}>
-            RUNS IN YOUR BROWSER
+            {isConverting ? 'PROCESSING FILE...' : 'HYBRID WORKER ACTIVE'}
           </span>
         </div>
       </header>
@@ -42,8 +42,8 @@ function App() {
             Drop a file. Get any format back.
           </h1>
           <p className="text-base" style={{ color: '#6B6862' }}>
-            We read the file itself to know what it really is — not just the name.
-            Nothing is uploaded to a server.
+            We read the file bytes to know what it truly is. 
+            Heavy files are securely processed using ephemeral cloud sandboxes.
           </p>
         </div>
 
@@ -53,13 +53,13 @@ function App() {
           <ConversionPanel
             fileData={fileData}
             onConvert={handleConvert}
-            onReset={() => { setFileData(null); setConvertError(null); }}
+            onReset={() => { if (!isConverting) { setFileData(null); setConvertError(null); } }}
             isConverting={isConverting}
           />
         )}
 
         {convertError && (
-          <p className="mt-4 text-sm font-mono" style={{ color: 'var(--ember)' }}>
+          <p className="mt-4 text-sm font-mono max-w-md text-center" style={{ color: 'var(--ember)' }}>
             {convertError}
           </p>
         )}
@@ -67,7 +67,7 @@ function App() {
 
       <footer className="text-center pb-8">
         <p className="text-xs font-mono" style={{ color: '#A6A299' }}>
-          IMAGES · PDF · CSV · JSON · XLSX
+          IMAGES · PDF · DOCX · TXT · XLSX · PPTX
         </p>
       </footer>
     </div>

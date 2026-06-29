@@ -28,8 +28,9 @@ export default function ConversionPanel({ fileData, onConvert, onReset, isConver
         </div>
         <button
           onClick={onReset}
-          className="text-sm font-mono shrink-0 ml-3 hover:underline"
-          style={{ color: '#A6A299' }}
+          disabled={isConverting}
+          className="text-sm font-mono shrink-0 ml-3 hover:underline disabled:no-underline disabled:opacity-40"
+          style={{ color: '#A6A299', cursor: isConverting ? 'not-allowed' : 'pointer' }}
         >
           CHANGE
         </button>
@@ -44,12 +45,14 @@ export default function ConversionPanel({ fileData, onConvert, onReset, isConver
           return (
             <button
               key={opt}
+              disabled={isConverting}
               onClick={() => setSelectedTarget(opt)}
-              className="font-mono text-sm px-4 py-2 rounded-md border transition-colors"
+              className="font-mono text-sm px-4 py-2 rounded-md border transition-colors disabled:opacity-60"
               style={{
                 borderColor: active ? 'var(--pine)' : 'var(--line)',
                 backgroundColor: active ? 'var(--pine)' : 'white',
                 color: active ? 'white' : 'var(--ink)',
+                cursor: isConverting ? 'not-allowed' : 'pointer'
               }}
             >
               .{opt.toUpperCase()}
@@ -60,11 +63,31 @@ export default function ConversionPanel({ fileData, onConvert, onReset, isConver
 
       <button
         onClick={() => onConvert(selectedTarget)}
-        disabled={isConverting}
-        className="w-full rounded-lg py-3.5 font-display font-medium text-white transition-opacity disabled:opacity-50"
-        style={{ backgroundColor: 'var(--ember)' }}
+        disabled={isConverting || !selectedTarget}
+        className="w-full rounded-lg py-3.5 font-display font-medium text-white transition-all flex items-center justify-center gap-2.5 disabled:opacity-60"
+        style={{ 
+          backgroundColor: 'var(--ember)',
+          cursor: isConverting ? 'not-allowed' : 'pointer' 
+        }}
       >
-        {isConverting ? 'Converting…' : `Convert to .${selectedTarget.toUpperCase()}`}
+        {isConverting ? (
+          <>
+            {/* Inline vector spinner circle */}
+            <svg 
+              className="ui-spinner" 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24"
+              style={{ width: '18px', height: '18px', color: 'currentColor' }}
+            >
+              <circle style={{ opacity: 0.25 }} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3.5"></circle>
+              <path style={{ opacity: 0.85 }} fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Converting format...</span>
+          </>
+        ) : (
+          <span>Convert to .{selectedTarget.toUpperCase()}</span>
+        )}
       </button>
     </div>
   );
