@@ -94,6 +94,7 @@ export function getAvailableConversions(ext) {
     xls: ['pdf'],  
     pptx: ['pdf'], 
     ppt: ['pdf'],
+    md: ['pdf'],
 
     // Data
     csv: ['json', 'xlsx'],

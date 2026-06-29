@@ -28,6 +28,7 @@ export async function convertFile(file, sourceExt, targetFormat) {
     (sourceExt === 'docx' && targetFormat === 'pdf') ||
     (sourceExt === 'cfb' && targetFormat === 'pdf') ||
     (sourceExt === 'txt' && targetFormat === 'pdf') ||
+    (sourceExt === 'md' && targetFormat === 'pdf') ||
     (sourceExt === 'xlsx' && targetFormat === 'pdf') ||
     (sourceExt === 'xls' && targetFormat === 'pdf') ||  
     (sourceExt === 'pptx' && targetFormat === 'pdf') || 
